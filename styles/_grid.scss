@@ -1,0 +1,117 @@
+/*----------------------------------------
+
+  KORDE - GRID
+
+-----------------------------------------*/
+
+// Layout
+// -----------------
+.row {
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -ms-flex-direction: row;
+  width: 100%;
+  // Extends
+  @extend %is-flex;
+}
+
+.row-center {
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.row-end {
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.row-center-v {
+  align-items: center;
+  -ms-flex-align: center;
+}
+
+.row-end-v {
+  align-items: flex-end;
+  -ms-flex-align: end;
+}
+
+.force-right {
+  margin-right: auto;
+}
+
+.force-left {
+  margin-left: auto;
+}
+
+// Columns & Rows
+// --------------------
+
+/*
+    Decided to use the 12 number system
+*/
+
+@for $i from 1 to 13 {
+  .c-s-#{$i} {
+    width: 100%/12*$i;
+    @extend %default-column;
+  }
+}
+
+@for $i from 1 to 13 {
+  .c-m-#{$i} {
+    width: 100%/12*$i;
+    @extend %default-column;
+  }
+}
+
+@for $i from 1 to 13 {
+  .c-l-#{$i} {
+    width: 100%/12*$i;
+    @extend %default-column;
+  }
+}
+
+@media (max-width: $mediumMediaSize) {
+  @for $i from 1 to 13 {
+    .c-l-#{$i} {
+      width: 100%;
+    }
+  }
+  @for $i from 1 to 13 {
+    .c-s-#{$i} {
+      width: 100%/12*$i;
+    }
+  }
+  @for $i from 1 to 13 {
+    .c-m-#{$i} {
+      width: 100%/12*$i;
+    }
+  }
+}
+
+@media (max-width: $smallMediaSize) {
+  @for $i from 1 to 13 {
+    .c-m-#{$i} {
+      width: 100%;
+    }
+  }
+
+  @for $i from 1 to 13 {
+    .c-s-#{$i} {
+      width: 100%/12*$i;
+    }
+  }
+}
+
+// Align properties
+.c-center {
+  align-self: center;
+}
+
+.c-end {
+  align-self: flex-end;
+}
+

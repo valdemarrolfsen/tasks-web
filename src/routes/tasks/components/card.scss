@@ -1,0 +1,16 @@
+.card {
+
+  .trash {
+    opacity: 0;
+  }
+
+  .check, .trash {
+    &:hover {
+      transform: scale(1.6);
+    }
+  }
+
+  &:hover .trash {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,149 @@
+/*----------------------------------------
+
+MIMAS - BUTTONS
+
+-----------------------------------------*/
+
+// Local variables
+// -------------------
+
+// Buttons
+$button-sm-padding: 5px 20px;
+$button-md-padding: 10px 40px;
+$button-lg-padding: 15px 60px;
+
+// Local mixins
+// -------------------
+
+@mixin button($padding: 10px 40px, $border: 2px solid $light) {
+
+  // Extends
+  @extend %default-button;
+
+  // Custom style
+  padding: $padding;
+  border: $border;
+
+  @media (max-width: $smallMediaSize) {
+    width: 100%;
+  }
+}
+
+@mixin smoothHover($bg: $light, $color: $dark) {
+
+  // Placeholders
+  @extend %background-trans;
+
+  &:hover {
+    background: $bg;
+    color: $color;
+  }
+}
+
+// Buttons
+// -------------------
+
+// Button sizes
+.btn-sm {
+  // Mixins
+  @include button(5px 20px, 0);
+
+  // Placeholders
+  @extend %all-trans;
+}
+
+.btn-md {
+  // Mixins
+  @include button(10px 40px, 0);
+
+  // Placeholders
+  @extend %all-trans;
+}
+
+.btn-lg {
+  // Mixins
+  @include button(15px 60px, 0);
+
+  // Placeholders
+  @extend %all-trans;
+}
+
+@each $item in $mainColors {
+
+  // Simple buttons
+  .btn-#{nth($item, 1)} {
+
+    // Local variables
+    $bg: nth($item, 2);
+    $color: nth($item, 3);
+
+    //Custom style
+    background: $bg;
+    color: $color;
+    border: 1px solid $bg;
+
+    // Other
+    &:hover {
+      background: lighten($bg, 10%);
+      border-color: lighten($bg, 10%);
+    }
+    &:active {
+      background: darken($bg, 5%);
+      border-color: darken($bg, 5%);
+    }
+  }
+
+  // Gradient buttons
+  .btn-grad-#{nth($item, 1)} {
+
+    // Local variables
+    $bg: nth($item, 2);
+    $color: nth($item, 3);
+
+    // Custom style
+    color: nth($item, 3);
+    border-left: 1px solid rgba(0, 0, 0, 0);
+    border-right: 1px solid rgba(0, 0, 0, 0);
+
+    // Local mixins
+    @include grad-down($bg, darken($bg, 10%));
+
+    // Other
+    &:active {
+      @include grad-down(darken($bg, 10%), $bg);
+    }
+  }
+
+  // Border buttons
+  .btn-border-#{nth($item, 1)} {
+
+    // Local variables
+    $border: nth($item, 2);
+    $color: nth($item, 3);
+
+    // Static style
+    background: none;
+
+    //Custom style
+    border: 1px solid $border;
+    color: $border;
+
+    @include smoothHover($border, $color);
+
+    &:active {
+      background: darken($border, 5%);
+      border-color: darken($border, 5%);
+    }
+  }
+}
+
+// Rounded buttons
+.btn-round {
+  //Rounded style
+  border-radius: 1337px;
+}
+
+
+
+
+

@@ -1,0 +1,79 @@
+
+/* --------------------
+
+KORDE COMPONENTS
+
+Created by Valdemar Rolfsen 2016
+
+-------------------- */
+
+// Boxes
+// --------------------
+
+$header-height:           40px;
+$footer-height:           40px;
+
+$circle-diameter: 100px;
+$circle-sm-diameter: 60px;
+
+.i-box {
+  padding: 20px;
+  margin: 10px;
+
+  padding-top: $circle-diameter / 2;
+  margin-top: $circle-diameter / 2;
+  min-height: 100px;
+
+  .icon-circle {
+    position: absolute;
+    top: -$circle-diameter / 2;
+    left: 0; right: 0;
+    display: block;
+    margin: 0 auto;
+
+    text-align: center;
+
+    span, i {
+      line-height: $circle-diameter;
+    }
+
+    // Mixins
+    @include circle($circle-diameter);
+  }
+
+  @media (max-width: $smallMediaSize) {
+    margin-top: $circle-sm-diameter / 2;
+    padding-top: $circle-sm-diameter / 2;
+
+    .icon-circle {
+      top: -$circle-sm-diameter / 2;
+
+      // Mixins
+      @include square($circle-sm-diameter);
+
+      span, i {
+        line-height: $circle-sm-diameter;
+      }
+    }
+  }
+}
+
+@each $item in $mainColors {
+
+  $bg: nth($item, 2);
+  $color: nth($item, 3);
+
+  .i-box-#{nth($item, 1)} {
+    border-bottom: 5px solid lighten($bg, 20%);
+    background: $light;
+
+    .icon-circle {
+      background: $bg;
+      color: $color;
+    }
+  }
+}
+
+.card {
+  box-shadow: 0 1px 3px rgba(0,0,0, 0.12);
+}

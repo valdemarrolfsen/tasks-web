@@ -1,0 +1,74 @@
+@import "../../../styles/mixins";
+
+// Material theme
+$white: #FFF;
+$speech: rgba(255, 255, 255, 0.6);
+$yonder: rgba(255, 255, 255, 0.5);
+$aquamarine: #FFF;
+
+$all-text-inputs: 'input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="password"], input[type="search"],input[type="tel"], input[type="text"], input[type="time"], input[type="url"], input[type="week"]';
+
+$font-normal: 20px;
+
+.material {
+  .form-field {
+    position: relative;
+
+    #{$all-text-inputs} {
+      background-color: transparent;
+      border-color: $yonder;
+      border-style: none none solid;
+      border-width: 0 0 1px;
+      box-sizing: border-box;
+      color: $white;
+      font-size: $font-normal;
+      padding: 10px;
+      width: 100%;
+
+      &:focus {
+        outline: 0;
+
+        ~ span {
+          @include trans(all, .3s);
+          width: 100%;
+        }
+      }
+
+      &:focus ~ label,
+      &:valid ~ label {
+        @include trans(all, .25s);
+        color: $aquamarine;
+        font-size: 1em;
+        top: -20px;
+        left: 0;
+      }
+
+      &:invalid {
+        box-shadow: none;
+      }
+
+      ~ span {
+        position: absolute;
+        left: 0; bottom: 0;
+
+        height: 3px;
+        width: 0;
+
+        @include trans(all, .25s);
+        background: $aquamarine;
+        display: block;
+      }
+    }
+
+    label {
+      position: absolute;
+      left: 10px; top: 10px;
+
+      font-size: 1.4em;
+
+      @include trans(all, .5s);
+      color: $yonder;
+      pointer-events: none;
+    }
+  }
+}
